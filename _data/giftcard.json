@@ -1,0 +1,26 @@
+[
+    {
+    "name":"10$ steam gift",
+    "slug":"10-steam-gift",
+    "description":"this is 10$ steam gift card to use in steam store",
+    "price":10,
+    "type":["Steam"]
+    
+},
+{
+    "name":"20$ steam gift",
+    "slug":"50-steam-gift",
+    "description":"this is 20$ steam gift card to use in steam store",
+    "price":20,
+    "tags":["Steam"]
+    
+},
+{
+    "name":"50$ steam gift",
+    "slug":"50-steam-gift",
+    "description":"this is 50$ steam gift card to use in steam store",
+    "price":20,
+    "tags":["Steam"]
+    
+}
+]
