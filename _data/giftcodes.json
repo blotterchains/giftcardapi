@@ -16,5 +16,23 @@
     "price":20,
     "type":"Steam",
     "quantity":20
+},
+{
+    "code":"ADKHG-DFNUI-FEWFW",
+    "price":10,
+    "type":"Google",
+    "quantity":10
+},
+{
+    "code":"DQWHO-FKDSF-EWDF",
+    "price":50,
+    "type":"Google",
+    "quantity":10
+},
+{
+    "code":"AKFDH-FEWIO-VDSKOL",
+    "price":20,
+    "type":"Google",
+    "quantity":20
 }
 ]

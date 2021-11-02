@@ -9,7 +9,7 @@
 },
 {
     "name":"20$ steam gift",
-    "slug":"50-steam-gift",
+    "slug":"20-steam-gift",
     "description":"this is 20$ steam gift card to use in steam store",
     "price":20,
     "tags":["Steam"]
@@ -21,6 +21,30 @@
     "description":"this is 50$ steam gift card to use in steam store",
     "price":20,
     "tags":["Steam"]
+    
+},
+{
+    "name":"10$ google play gift",
+    "slug":"10-google-play-gift",
+    "description":"this is 10$ steam gift card to use in steam store",
+    "price":10,
+    "type":["Google"]
+    
+},
+{
+    "name":"20$ google play gift",
+    "slug":"20-google-play-gift",
+    "description":"this is 20$ steam gift card to use in steam store",
+    "price":20,
+    "tags":["Google"]
+    
+},
+{
+    "name":"50$ google play gift",
+    "slug":"50-google-play-gift",
+    "description":"this is 50$ steam gift card to use in steam store",
+    "price":20,
+    "tags":["Google"]
     
 }
 ]
