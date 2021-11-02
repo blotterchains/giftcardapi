@@ -15,8 +15,20 @@ exports.addNewGiftCode = asyncHandler(async (req, res,next) => {
 //@url          Get /
 //@access       Private
 exports.getAllGiftCodes=asyncHandler(async(req,res,next)=>{
-
-        const _retAllGiftCode=await giftCode.find();
+        let query;
+        let queryStr={... req.query};
+        let removeFields=['select','sort'];
+        removeFields.forEach(item=>delete queryStr[item]);
+        let bodysigns=JSON.stringify(queryStr);
+        bodysigns=bodysigns.replace(/\b(gt|lt|lte|gte|in)\b/g,match=> `$${match}` );
+        query=giftCode.find(JSON.parse(bodysigns));
+        if(req.query.select){
+                query.select(req.query.select.split(',').join(' '));
+        }
+        if(req.query.sort){
+                query.sort(req.query.sort.split(',').join(' '));
+        }
+        const _retAllGiftCode=await query;
         res.status(200).json({ status: true,data:_retAllGiftCode });
 
 })

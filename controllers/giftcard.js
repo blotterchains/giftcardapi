@@ -5,8 +5,32 @@ const Giftcard = require('../models/Giftcard');
 //@url          GET /
 //@access       public
 exports.getAllGifts = async (req, res) => {
-    const _retAllGifts = await Giftcard.find()
-    res.status(200).json({ status: true, data: _retAllGifts });
+    // blank query for async query
+    let query;
+    // copy the query for filtering works
+    let queryStr={... req.query};
+    // a variable for filtering fields to remove from copy of query
+    const removeFields=['select','sort','page','limit'];
+    // remove fields from query copy
+    removeFields.forEach(item=>delete queryStr[item]);
+    let bodysigns=JSON.stringify(queryStr);
+    bodysigns=bodysigns.replace(/\b(gt|lt|lte|gte|in)\b/g,match=> `$${match}` );
+    query=Giftcard.find(JSON.parse(bodysigns));
+    // Select
+    if(req.query.select){
+        query.select(req.query.select.split(',').join(" "));
+    }
+    // Sort
+    if(req.query.sort){
+        query.sort(req.query.sort.split(',').join(" "));
+    }
+    const page=parseInt(req.query.page ,10)||1;
+    const limit=parseInt(req.query.limit , 10)||3;
+    const skip=(page-1)*limit;
+    query=query.skip(skip).limit(limit);
+    // Execute query
+    const _retAllGifts = await query;
+    res.status(200).json({ status: true, count:_retAllGifts.length, data: _retAllGifts });
 }
 //@desc         create new gift card with types and prices
 //@url          POST /
