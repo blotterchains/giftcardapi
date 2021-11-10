@@ -24,13 +24,24 @@ exports.getAllGifts = async (req, res) => {
     if(req.query.sort){
         query.sort(req.query.sort.split(',').join(" "));
     }
+    // pagination variable and calculation
     const page=parseInt(req.query.page ,10)||1;
     const limit=parseInt(req.query.limit , 10)||3;
-    const skip=(page-1)*limit;
-    query=query.skip(skip).limit(limit);
+    const startIndex=(page-1)*limit;
+    const endIndex=page*limit;
+    query=query.skip(startIndex).limit(limit);
+    const counter=await Giftcard.countDocuments();
+    let pagination={};
+    // Pagination 
+    if (startIndex>0){
+        pagination.perv=page-1;
+    }
+    if(endIndex<counter){
+        pagination.next=page+1;
+    }
     // Execute query
     const _retAllGifts = await query;
-    res.status(200).json({ status: true, count:_retAllGifts.length, data: _retAllGifts });
+    res.status(200).json({ status: true, count:_retAllGifts.length,pagination, data: _retAllGifts });
 }
 //@desc         create new gift card with types and prices
 //@url          POST /
